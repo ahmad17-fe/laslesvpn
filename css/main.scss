@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+$backgroundPrimary: #FFFFFF;
+$backgroundSecondary: #F8F8F8;
+$colorPrimary: #F53838;
+$colorSecondary: #4F5665;
+$colorBlack: #0B132A;
+$colorLight: #AFB5C0;
+$borderRadius: 10px;
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+@mixin tablet {
+	@media (min-width: 768px) {
+		@content
+	}
+}
+
+@mixin desktop {
+	@media (min-width: 1024px) {
+		@content
+	}
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+
+	li {
+		list-style: none;
+	}
+}
+
+html,
+body {
+	font-family: 'Rubik', sans-serif;
+}
+
+body {
+	margin: 0;
+	background: $backgroundPrimary;
+	line-height: 1.6em;
+}
+
+.btn-signup {
+	border-radius: $borderRadius;
+	padding: .5em 1.5em;
+	border: 1px solid $colorPrimary;
+	color: $colorPrimary !important;
+	display: block;
+	text-align: center;
+	transition: .3s ease;
+	font-weight: 500;
+
+	&:hover {
+		background: $colorPrimary;
+		color: $backgroundPrimary !important;
+	}
+}
+
+@include tablet {
+	.btn-signup {
+		padding: .3em 1.2em;
+		transition: .3s ease;
+		font-size: .9em;
+
+		&:hover {
+			background: $colorPrimary;
+			color: $backgroundPrimary;
+		}
+	}
+}
+
+
+.btn-primary {
+	display: inline-block;
+	font-size: .8em;
+	font-weight: 500;
+	background: $colorPrimary;
+	padding: .7em 0;
+	width: 175px;
+	text-align: center;
+	border-radius: $borderRadius;
+	color: #FFFFFF;
+	box-shadow: 0 20px 30px -15px rgba($color: $colorPrimary, $alpha: 1);
+}
+
+
+
+.container {
+	width: 85%;
+	margin: 0 auto;
+}
+
+// Navbar
+.navbar {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	background: $backgroundPrimary;
+	padding: 1.5em 0;
+	z-index: 998;
+
+	.container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__brand {
+		display: inherit;
+
+		img {
+			width: 85%;
+		}
+	}
+
+	.toggle_menu {
+		display: inline-flex;
+		cursor: pointer;
+		border-radius: 5px;
+		padding: .3em .5em;
+		border: 1px solid rgba($color: $colorPrimary, $alpha: 0.7);
+
+		i {
+			font-size: 1.3em;
+			color: $colorPrimary;
+		}
+	}
+
+	&__menu {
+		display: none;
+	}
+
+	&__button__item {
+		display: none;
+	}
+}
+
+@include tablet {
+	.navbar {
+		.container {
+			display: flex;
+		}
+
+		&__button {
+			display: flex;
+			align-items: center;
+
+			&__item {
+				display: block;
+				margin-right: 30px;
+
+				a {
+					font-size: .9em;
+					font-weight: 500;
+					color: $colorBlack;
+				}
+			}
+		}
+	}
+}
+
+@include desktop {
+	.navbar {
+		.toggle_menu {
+			display: none;
+		}
+
+		&__brand {
+			img {
+				width: 150px;
+			}
+		}
+
+		&__menu {
+			display: flex;
+
+			&__item {
+				margin-right: 30px;
+
+				&:last-of-type {
+					margin-right: 0;
+				}
+			}
+
+			&__link {
+				color: $colorSecondary;
+
+				&:hover {
+					color: $colorBlack;
+				}
+			}
+		}
+
+		&__button {
+			display: flex;
+
+			&__item {
+				&:last-of-type {
+					margin-right: 0px;
+				}
+			}
+		}
+	}
+}
+
+// Sidebar
+.sidebar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 280px;
+	background: $backgroundPrimary;
+	height: 100vh;
+	transform: translateX(400px);
+	transition: 0.3s cubic-bezier(.6, -0.09, .28, 1.18);
+	z-index: 999;
+	overflow-y: auto;
+
+	&.active {
+		transform: translateX(0);
+	}
+
+	&__body {
+		padding: 32px;
+		height: 100%;
+	}
+
+	.close-sidebar {
+		display: block;
+		text-align: right;
+
+		i {
+			font-size: 1.7em;
+			cursor: pointer;
+			color: $colorPrimary;
+		}
+	}
+
+	&__menu {
+		&__item {
+			width: 100%;
+			padding: .5em .3em;
+			margin-bottom: 1.4em;
+		}
+
+		&__link {
+			font-size: 1.2em;
+			font-weight: 500;
+			color: $colorSecondary;
+			transition: 0.3s ease;
+
+			&:hover {
+				color: #393e49;
+			}
+		}
+	}
+}
+
+@include tablet {
+	.sidebar {
+		width: 400px;
+	}
+}
+
+@include desktop {
+	.sidebar {
+		display: none;
+	}
+}
+
+
+// Hero
+.hero {
+	margin-top: 90px;
+
+	.container {
+		display: grid;
+		grid-template-rows: repeat(2, auto);
+	}
+
+	&__info {
+		order: 2;
+
+		&__title {
+			line-height: 1.6;
+			margin-top: 3rem;
+			color: $colorBlack;
+
+			span {
+				font-weight: 500;
+			}
+		}
+
+		&__pg {
+			font-size: .9em;
+			margin-bottom: 3rem;
+			color: $colorSecondary;
+
+			span {
+				font-weight: 500;
+			}
+		}
+	}
+
+	&__img {
+		order: 1;
+		width: 100%;
+	}
+}
+
+@include tablet {
+	.hero {
+		&__info {
+			&__title {
+				font-size: 2.2em;
+			}
+
+			&__pg {
+				font-size: 1.2em;
+			}
+		}
+	}
+}
+
+@include desktop {
+	.hero {
+		.container {
+			display: flex;
+		}
+
+		&__info {
+			order: 1;
+			margin-top: 50px;
+			margin-right: 35px;
+
+			&__title {
+				font-size: 2.9em;
+			}
+
+			&__pg {
+				font-size: 1em;
+			}
+		}
+
+		&__img {
+			order: 2;
+			margin-top: 50px;
+			width: 50%;
+		}
+	}
+}
+
+
+// info app
+.info__app {
+	margin: 100px 0;
+	padding: 1em 0;
+
+	.container {
+		display: grid;
+		grid-template-rows: repeat(3, auto);
+		justify-content: center;
+	}
+
+	&__item {
+		text-align: center;
+		padding: 1.5em;
+
+		&__img {
+			width: 70%;
+		}
+
+		&__count {
+			font-weight: bold;
+			color: $colorBlack;
+		}
+
+		&__name {
+			color: $colorSecondary;
+		}
+	}
+}
+
+@include tablet {}
